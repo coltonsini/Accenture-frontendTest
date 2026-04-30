@@ -1,0 +1,8 @@
+{
+  "name": "mi-todo-app",
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  },
+  "type": "angular-standalone"
+}
