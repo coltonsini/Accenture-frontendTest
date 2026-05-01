@@ -37,11 +37,11 @@ export class CategoryFilterComponent {
   @Output() filterChange = new EventEmitter<TaskCategory | 'all'>();
 
   chips: FilterChip[] = [
-    { id: 'all',      label: 'Todas',    icon: '✨', color: '#4b47c0' },
-    { id: 'trabajo',  label: 'Trabajo',  icon: '💼', color: '#ff4a00' },
-    { id: 'personal', label: 'Personal', icon: '🏠', color: '#706fd3' },
-    { id: 'estudio',  label: 'Estudio',  icon: '📚', color: '#00b67a' },
-    { id: 'otros',    label: 'Otros',    icon: '🌟', color: '#ffb800' },
+    { id: 'all',      label: 'Todas',    icon: '✨', color: '#1f1f1f' },
+    { id: 'trabajo',  label: 'Trabajo',  icon: '💼', color: '#a100ff' },
+    { id: 'personal', label: 'Personal', icon: '🏠', color: '#6f00ff' },
+    { id: 'estudio',  label: 'Estudio',  icon: '📚', color: '#008a3c' },
+    { id: 'otros',    label: 'Otros',    icon: '🌟', color: '#ff6d00' },
   ];
 
   select(id: TaskCategory | 'all') {

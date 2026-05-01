@@ -60,6 +60,7 @@ ion-title {
   margin-bottom: 24px;
   padding: 20px 24px;
   background: var(--ion-card-background);
+  border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
 }
@@ -74,7 +75,7 @@ ion-title {
 .summary-subtitle {
   margin: 0;
   font-size: 0.875rem;
-  color: var(--ion-color-medium, #6e6d8a);
+  color: var(--text-secondary);
 }
 
 .summary-subtitle strong {
@@ -92,13 +93,13 @@ ion-title {
   flex-direction: column;
   align-items: center;
   padding: 8px 16px;
-  background: rgba(255, 74, 0, 0.08);
+  background: rgba(161, 0, 255, 0.08);
   border-radius: var(--radius-md);
   min-width: 56px;
 }
 
 .stat.stat-success {
-  background: rgba(0, 182, 122, 0.08);
+  background: rgba(0, 138, 60, 0.08);
 }
 
 .stat-value {
@@ -115,7 +116,7 @@ ion-title {
 .stat-label {
   font-size: 0.65rem;
   font-weight: 600;
-  color: var(--ion-color-medium, #6e6d8a);
+  color: var(--text-secondary);
   text-transform: uppercase;
   margin-top: 2px;
   letter-spacing: 0.3px;
@@ -159,7 +160,7 @@ ion-title {
 .empty-state {
   text-align: center;
   padding: 60px 24px;
-  color: var(--ion-color-medium, #6e6d8a);
+  color: var(--text-secondary);
 }
 
 .empty-icon {
@@ -193,7 +194,7 @@ ion-fab-button {
   --background: var(--ion-color-primary);
   --background-activated: var(--ion-color-primary-shade);
   --background-hover: var(--ion-color-primary-tint);
-  --box-shadow: 0 6px 16px rgba(255, 74, 0, 0.35);
+  --box-shadow: var(--shadow-purple);
   --border-radius: 16px;
   width: 56px;
   height: 56px;

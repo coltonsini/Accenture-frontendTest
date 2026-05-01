@@ -89,10 +89,10 @@ export class TaskItemComponent {
   featureFlags = inject(FeatureFlagService);
 
   private categoryMap: Record<TaskCategory, CategoryStyle> = {
-    trabajo:  { emoji: '💼', label: 'Trabajo',  color: '#ff4a00', bg: '#fff0e8' },
-    personal: { emoji: '🏠', label: 'Personal', color: '#706fd3', bg: '#eeeefb' },
-    estudio:  { emoji: '📚', label: 'Estudio',  color: '#00b67a', bg: '#e0f7ee' },
-    otros:    { emoji: '🌟', label: 'Otros',    color: '#ffb800', bg: '#fff8e0' },
+    trabajo:  { emoji: '💼', label: 'Trabajo',  color: 'var(--color-cat-trabajo)',  bg: 'var(--color-cat-trabajo-bg)' },
+    personal: { emoji: '🏠', label: 'Personal', color: 'var(--color-cat-personal)', bg: 'var(--color-cat-personal-bg)' },
+    estudio:  { emoji: '📚', label: 'Estudio',  color: 'var(--color-cat-estudio)',  bg: 'var(--color-cat-estudio-bg)' },
+    otros:    { emoji: '🌟', label: 'Otros',    color: 'var(--color-cat-otros)',    bg: 'var(--color-cat-otros-bg)' },
   };
 
   get categoryStyle(): CategoryStyle {

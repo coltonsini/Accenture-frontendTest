@@ -133,10 +133,10 @@ export class TaskFormPage implements OnInit {
   featureFlags = inject(FeatureFlagService);
 
   categories: CategoryOption[] = [
-    { id: 'trabajo',  label: 'Trabajo',  emoji: '💼', color: '#ff4a00', bg: '#fff0e8' },
-    { id: 'personal', label: 'Personal', emoji: '🏠', color: '#706fd3', bg: '#eeeefb' },
-    { id: 'estudio',  label: 'Estudio',  emoji: '📚', color: '#00b67a', bg: '#e0f7ee' },
-    { id: 'otros',    label: 'Otros',    emoji: '🌟', color: '#ffb800', bg: '#fff8e0' },
+    { id: 'trabajo',  label: 'Trabajo',  emoji: '💼', color: 'var(--color-cat-trabajo)',  bg: 'var(--color-cat-trabajo-bg)' },
+    { id: 'personal', label: 'Personal', emoji: '🏠', color: 'var(--color-cat-personal)', bg: 'var(--color-cat-personal-bg)' },
+    { id: 'estudio',  label: 'Estudio',  emoji: '📚', color: 'var(--color-cat-estudio)',  bg: 'var(--color-cat-estudio-bg)' },
+    { id: 'otros',    label: 'Otros',    emoji: '🌟', color: 'var(--color-cat-otros)',    bg: 'var(--color-cat-otros-bg)' },
   ];
 
   ngOnInit() {
