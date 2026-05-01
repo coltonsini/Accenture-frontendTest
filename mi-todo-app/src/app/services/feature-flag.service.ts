@@ -1,40 +1,60 @@
 import { Injectable, signal } from '@angular/core';
-import { RemoteConfig, fetchAndActivate, getValue } from '@angular/fire/remote-config';
+import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class FeatureFlagService {
-
   readonly flags = signal<Record<string, boolean>>({
     enableDarkMode: false,
-    enableTaskDescription: false,
+    enableTaskDescription: true,
     enableStatistics: false,
   });
 
-  constructor(private remoteConfig: RemoteConfig) {}
+  private loaded = false;
 
   async loadFlags() {
-    try {
-      
-      // Default values for the feature flags
+    if (this.loaded) return;
 
-      this.remoteConfig.defaultConfig = {
+    try {
+      const { initializeApp } = await import('firebase/app');
+      const {
+        getRemoteConfig,
+        fetchAndActivate,
+        getValue,
+      } = await import('firebase/remote-config');
+
+      const app = initializeApp(environment.firebaseConfig);
+      const remoteConfig = getRemoteConfig(app);
+
+      // Defaults
+      remoteConfig.defaultConfig = {
         enableDarkMode: false,
-        enableTaskDescription: false,
+        enableTaskDescription: true,
         enableStatistics: false,
       };
 
-      this.remoteConfig.settings.minimumFetchIntervalMillis = 3600000;
+      // Dynamic fetch intervals
+      remoteConfig.settings.minimumFetchIntervalMillis = environment.production
+        ? 3600000  
+        : 0;       
 
-      await fetchAndActivate(this.remoteConfig);
+      remoteConfig.settings.fetchTimeoutMillis = 10000;
+
+      await fetchAndActivate(remoteConfig);
 
       this.flags.set({
-        enableDarkMode: getValue(this.remoteConfig, 'enableDarkMode').asBoolean(),
-        enableTaskDescription: getValue(this.remoteConfig, 'enableTaskDescription').asBoolean(),
-        enableStatistics: getValue(this.remoteConfig, 'enableStatistics').asBoolean(),
+        enableDarkMode: getValue(remoteConfig, 'enableDarkMode').asBoolean(),
+        enableTaskDescription: getValue(remoteConfig, 'enableTaskDescription').asBoolean(),
+        enableStatistics: getValue(remoteConfig, 'enableStatistics').asBoolean(),
       });
+      this.loaded = true;
     } catch (err) {
       console.error('Error cargando feature flags', err);
     }
+  }
+
+  async refreshFlags() {
+    this.loaded = false;
+    await this.loadFlags();
   }
 
   isEnabled(flag: string): boolean {
