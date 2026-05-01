@@ -13,17 +13,8 @@ mi-todo-app/
 ├── ionic.config.json
 ├── config.xml
 ├── README.md
-├── CHANGELOG.md
+├── DECISIONS.md
 ├── .gitignore
-│
-├── docs/                         ← Detailed documentation
-│   ├── ARCHITECTURE.md
-│   ├── SETUP.md
-│   ├── FEATURES.md
-│   ├── FIREBASE.md
-│   ├── PERFORMANCE.md
-│   ├── BUILD.md
-│   └── THEMING.md
 │
 └── src/
     ├── main.ts
@@ -51,6 +42,7 @@ mi-todo-app/
         └── pages/
             ├── home/
             └── task-form/
+        
 ```
 
 ---
