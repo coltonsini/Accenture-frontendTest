@@ -1,0 +1,223 @@
+/* ============================================
+       HEADER Styles
+============================================ */
+
+.header-clean ion-toolbar {
+  --background: var(--ion-toolbar-background);
+  --border-color: transparent;
+  --border-width: 0;
+  --min-height: 60px;
+  --padding-top: env(safe-area-inset-top);
+}
+
+.header-clean::after {
+  display: none;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  padding-right: 12px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-left: 12px;
+}
+
+.brand-logo {
+  font-size: 1.4rem;
+}
+
+ion-title {
+  font-weight: 700;
+  font-size: 1.1rem;
+  padding: 0;
+}
+
+/* ============================================
+       MAIN PRINCIPAL
+============================================ */
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 16px calc(120px + env(safe-area-inset-bottom));
+  animation: fadeInUp 0.3s ease-out;
+}
+
+/* ============================================
+       SUMMARY CARD
+============================================ */
+
+.summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding: 20px 24px;
+  background: var(--ion-card-background);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.summary-title {
+  margin: 0 0 4px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--ion-text-color);
+}
+
+.summary-subtitle {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--ion-color-medium, #6e6d8a);
+}
+
+.summary-subtitle strong {
+  color: var(--ion-color-primary);
+  font-weight: 700;
+}
+
+.summary-stats {
+  display: flex;
+  gap: 12px;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 16px;
+  background: rgba(255, 74, 0, 0.08);
+  border-radius: var(--radius-md);
+  min-width: 56px;
+}
+
+.stat.stat-success {
+  background: rgba(0, 182, 122, 0.08);
+}
+
+.stat-value {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--ion-color-primary);
+  line-height: 1;
+}
+
+.stat-success .stat-value {
+  color: var(--ion-color-success);
+}
+
+.stat-label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--ion-color-medium, #6e6d8a);
+  text-transform: uppercase;
+  margin-top: 2px;
+  letter-spacing: 0.3px;
+}
+
+/* ============================================
+   GRID RESPONSIVE: 1 → 2 → 3 → 4
+============================================ */
+
+.grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 600px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+}
+
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+}
+
+/* ============================================
+       EMPTY STATE
+============================================ */
+
+.empty-state {
+  text-align: center;
+  padding: 60px 24px;
+  color: var(--ion-color-medium, #6e6d8a);
+}
+
+.empty-icon {
+  font-size: 3.5rem;
+  margin-bottom: 12px;
+  opacity: 0.6;
+}
+
+.empty-state h3 {
+  margin: 0 0 6px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ion-text-color);
+}
+
+.empty-state p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* ============================================
+      FAB CON SAFE AREA
+============================================ */
+
+ion-fab {
+  margin-bottom: calc(16px + env(safe-area-inset-bottom));
+  margin-right: calc(8px + env(safe-area-inset-right));
+}
+
+ion-fab-button {
+  --background: var(--ion-color-primary);
+  --background-activated: var(--ion-color-primary-shade);
+  --background-hover: var(--ion-color-primary-tint);
+  --box-shadow: 0 6px 16px rgba(255, 74, 0, 0.35);
+  --border-radius: 16px;
+  width: 56px;
+  height: 56px;
+  animation: popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  animation-delay: 0.3s;
+}
+
+ion-fab-button:hover {
+  --background: var(--ion-color-primary-tint);
+  transform: scale(1.05);
+}
+
+ion-fab-button:active {
+  transform: scale(0.95);
+}
+
+@media (max-width: 480px) {
+  .summary {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px;
+  }
+  .summary-stats {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
