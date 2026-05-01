@@ -1,0 +1,62 @@
+.filter-scroll {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 12px 16px;
+  background: var(--ion-toolbar-background);
+  scrollbar-width: none; /* Firefox */
+}
+.filter-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.filter-track {
+  display: flex;
+  gap: 8px;
+  width: max-content;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: #584e4e;
+  border: 1.5px solid #e8e6f0;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--ion-text-color);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.chip:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.chip.active {
+  background: var(--chip-color);
+  border-color: var(--chip-color);
+  color: #ffffff;
+  box-shadow: var(--shadow-md);
+  animation: bounce 0.4s ease;
+}
+
+.chip:active {
+  transform: scale(0.95);
+}
+
+.emoji {
+  font-size: 1rem;
+}
+
+body.dark .chip {
+  background: var(--ion-item-background);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
