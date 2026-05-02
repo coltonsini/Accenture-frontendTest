@@ -10,6 +10,7 @@ import {
 import { TaskService } from '../../services/task.service';
 import { FeatureFlagService } from '../../services/feature-flag.service';
 import { TaskCategory } from '../../models/task.model';
+import { CategoryService } from '../../services/category.service';
 
 interface CategoryOption {
   id: TaskCategory;
@@ -76,16 +77,16 @@ interface CategoryOption {
         <div class="field">
           <label class="field-label">Categoría</label>
           <div class="category-grid">
-            @for (cat of categories; track cat.id) {
+            @for (cat of categoryService.categories(); track cat.id) {
               <button
                 type="button"
                 class="cat-card"
                 [class.selected]="category === cat.id"
                 [style.--cat-color]="cat.color"
-                [style.--cat-bg]="cat.bg"
+                [style.--cat-bg]="cat.bgColor"
                 (click)="category = cat.id">
                 <span class="cat-emoji">{{ cat.emoji }}</span>
-                <span class="cat-label">{{ cat.label }}</span>
+                <span class="cat-label">{{ cat.name }}</span>
               </button>
             }
           </div>
@@ -118,7 +119,7 @@ export class TaskFormPage implements OnInit {
 
   title = '';
   description = '';
-  category: TaskCategory = 'personal';
+  category: TaskCategory = '';
 
   // === Edition mode state ===
   
@@ -130,20 +131,11 @@ export class TaskFormPage implements OnInit {
   private taskService = inject(TaskService);
   private router = inject(Router);
   private route = inject(ActivatedRoute);
+  categoryService = inject(CategoryService);
   featureFlags = inject(FeatureFlagService);
 
-  categories: CategoryOption[] = [
-    { id: 'trabajo',  label: 'Trabajo',  emoji: '💼', color: 'var(--color-cat-trabajo)',  bg: 'var(--color-cat-trabajo-bg)' },
-    { id: 'personal', label: 'Personal', emoji: '🏠', color: 'var(--color-cat-personal)', bg: 'var(--color-cat-personal-bg)' },
-    { id: 'estudio',  label: 'Estudio',  emoji: '📚', color: 'var(--color-cat-estudio)',  bg: 'var(--color-cat-estudio-bg)' },
-    { id: 'otros',    label: 'Otros',    emoji: '🌟', color: 'var(--color-cat-otros)',    bg: 'var(--color-cat-otros-bg)' },
-  ];
-
   ngOnInit() {
-
-    // Conditional to see if the route has an ID parameter, if it does, we are in edit mode
     const id = this.route.snapshot.paramMap.get('id');
-
     if (id) {
       const task = this.taskService.getTask(id);
       if (task) {
@@ -153,11 +145,11 @@ export class TaskFormPage implements OnInit {
         this.description = task.description || '';
         this.category = task.category;
       } else {
-
-        // Invalid ID
-
         this.router.navigateByUrl('/home');
       }
+    } else {
+      const first = this.categoryService.categories()[0];
+      if (first) this.category = first.id;
     }
   }
 

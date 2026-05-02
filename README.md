@@ -41,7 +41,10 @@ mi-todo-app/
         │   └── theme-toggle/
         └── pages/
             ├── home/
+            ├── categories/
+            ├── category-form/
             └── task-form/
+            
         
 ```
 
@@ -203,6 +206,21 @@ Then archive and distribute via **Xcode → Organizer**.
 | Feature Flags | Firebase Remote Config |
 | Mobile packaging | Apache Cordova |
 | Theming | CSS Variables (Accenture palette) |
+
+---
+
+## Category Management
+
+Categories are fully customizable:
+
+- **Default categories** (Work, Personal, Study, Other) ship with the app
+- **Create** new categories with custom name, emoji, and color
+- **Edit** any category — including defaults
+- **Delete** with smart task handling:
+  - If category has no tasks → simple confirmation
+  - If category has tasks → choose to reassign or delete them
+- The last remaining category cannot be deleted (always at least one)
+- Categories persist locally with Ionic Storage
 
 ---
 

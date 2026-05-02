@@ -208,3 +208,11 @@ Several practices were applied to ensure code quality and maintainability:
 
 - **AI-Assisted Development with Validation:**  
   Although AI tools were used, all generated code was reviewed and adjusted to ensure correctness and maintainability.
+
+--- 
+
+### 12. Category crud
+
+At the end looking at the project requirements for a final review something popup and it was that there was no proper category crud implemented
+
+Although the test was already delivered I decided to include it as it would enterely complete the test.

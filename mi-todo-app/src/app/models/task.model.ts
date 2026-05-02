@@ -1,6 +1,6 @@
 // Definition of the category type and the Task interface, which represents a task in the application.
 
-export type TaskCategory = 'trabajo' | 'personal' | 'estudio' | 'otros';
+export type TaskCategory = string;
 
 export interface Task {
   id: string;            

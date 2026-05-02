@@ -6,8 +6,7 @@ import {
   IonFab, IonFabButton, IonIcon
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { add } from 'ionicons/icons';
-
+import { add, settingsOutline  } from 'ionicons/icons';
 import { TaskService } from '../../services/task.service';
 import { FeatureFlagService } from '../../services/feature-flag.service';
 import { TaskItemComponent } from '../../components/task-item/task-item.component';
@@ -36,11 +35,15 @@ import { TaskCategory } from '../../models/task.model';
           <ion-title>Mis Tareas</ion-title>
         </div>
         <div slot="end" class="header-actions">
+          <button class="header-btn" (click)="goToCategories()" aria-label="Categorías">
+            <ion-icon name="settings-outline"></ion-icon>
+          </button>
           @if (featureFlags.isEnabled('enableDarkMode')) {
             <app-theme-toggle />
           }
         </div>
       </ion-toolbar>
+
 
 
       <!-- Category Filter -->
@@ -117,7 +120,7 @@ export class HomePage implements OnInit {
   currentFilter = signal<TaskCategory | 'all'>('all');
 
   constructor() {
-    addIcons({ add });
+    addIcons({ add, settingsOutline });
   }
 
   async ngOnInit() {
@@ -141,4 +144,9 @@ export class HomePage implements OnInit {
   goToCreate() {
     this.router.navigateByUrl('/task-form');
   }
+
+  goToCategories() {
+    this.router.navigateByUrl('/categories');
+  }
+
 }

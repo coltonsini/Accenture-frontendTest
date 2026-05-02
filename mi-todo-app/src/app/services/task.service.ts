@@ -88,4 +88,21 @@ export class TaskService {
     await this.persist();
   }
 
+  async reassignCategory(fromCategoryId: string, toCategoryId: string) {
+    this._tasks.update(list =>
+      list.map(t => t.category === fromCategoryId ? { ...t, category: toCategoryId } : t)
+    );
+    await this.persist();
+  }
+
+  countByCategory(categoryId: string): number {
+    return this._tasks().filter(t => t.category === categoryId).length;
+  }
+
+  async deleteByCategory(categoryId: string) {
+    this._tasks.update(list => list.filter(t => t.category !== categoryId));
+    await this.persist();
+  }
+
+
 }

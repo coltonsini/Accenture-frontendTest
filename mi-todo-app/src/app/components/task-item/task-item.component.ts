@@ -4,6 +4,7 @@ import { Task, TaskCategory } from '../../models/task.model';
 import { TaskService } from '../../services/task.service';
 import { FeatureFlagService } from '../../services/feature-flag.service';
 import { AlertController, IonicSafeString } from '@ionic/angular/standalone';
+import { CategoryService } from '../../services/category.service';
 import { Router } from '@angular/router';
 
 
@@ -25,9 +26,9 @@ interface CategoryStyle {
       <header class="card-header">
         <span class="badge"
               [style.--badge-color]="categoryStyle.color"
-              [style.--badge-bg]="categoryStyle.bg">
+              [style.--badge-bg]="categoryStyle.bgColor">
           <span class="badge-emoji">{{ categoryStyle.emoji }}</span>
-          <span class="badge-text">{{ categoryStyle.label }}</span>
+          <span class="badge-text">{{ categoryStyle.name }}</span>
         </span>
 
         <div class="card-actions">
@@ -86,6 +87,7 @@ export class TaskItemComponent {
   private taskService = inject(TaskService);
   private alertCtrl = inject(AlertController);
   private router = inject(Router);
+  private categoryService = inject(CategoryService);
   featureFlags = inject(FeatureFlagService);
 
   private categoryMap: Record<TaskCategory, CategoryStyle> = {
@@ -95,8 +97,17 @@ export class TaskItemComponent {
     otros:    { emoji: '🌟', label: 'Otros',    color: 'var(--color-cat-otros)',    bg: 'var(--color-cat-otros-bg)' },
   };
 
-  get categoryStyle(): CategoryStyle {
-    return this.categoryMap[this.task.category];
+  get categoryStyle() {
+    const cat = this.categoryService.getById(this.task.category);
+
+    // Fallback if the category is missing (e.g. deleted)
+
+    return cat ?? {
+      emoji: '❓',
+      name: 'Sin categoría',
+      color: '#999999',
+      bgColor: '#f0f0f0',
+    };
   }
 
   get formattedDate(): string {

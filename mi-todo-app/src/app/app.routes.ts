@@ -17,4 +17,16 @@ export const routes: Routes = [
     path: 'task-form/:id',
     loadComponent: () => import('./pages/task-form/task-form.page').then(m => m.TaskFormPage)
   },
+  {
+    path: 'categories',
+    loadComponent: () => import('./pages/categories/categories.page').then(m => m.CategoriesPage)
+  },
+  {
+    path: 'category-form',
+    loadComponent: () => import('./pages/category-form/category-form.page').then(m => m.CategoryFormPage)
+  },
+  {
+    path: 'category-form/:id',
+    loadComponent: () => import('./pages/category-form/category-form.page').then(m => m.CategoryFormPage)
+  },
 ];

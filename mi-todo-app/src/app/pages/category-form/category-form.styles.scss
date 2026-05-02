@@ -1,0 +1,213 @@
+.header-clean ion-toolbar {
+  --background: var(--ion-toolbar-background);
+  --border-color: transparent;
+  --border-width: 0;
+}
+ion-title {
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.form-container {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 24px 20px calc(40px + env(safe-area-inset-bottom));
+  animation: fadeInUp 0.3s ease-out;
+}
+
+/* === PREVIEW === */
+.preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 28px 20px;
+  background: var(--preview-bg);
+  border: 2px solid var(--preview-color);
+  border-radius: var(--radius-lg);
+  margin-bottom: 28px;
+  transition: all 0.3s ease;
+}
+
+.preview-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-lg);
+  background: var(--ion-card-background);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.preview-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--preview-color);
+}
+
+/* === CAMPOS === */
+.field {
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.field-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--ion-text-color);
+  margin-bottom: 8px;
+}
+
+.required {
+  color: var(--ion-color-danger);
+}
+
+.field-input {
+  width: 100%;
+  padding: 12px 14px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: var(--ion-text-color);
+  background: var(--ion-card-background);
+  border: 1.5px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  outline: none;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.field-input:focus {
+  border-color: var(--ion-color-primary);
+  box-shadow: 0 0 0 3px rgba(161, 0, 255, 0.12);
+}
+
+.field-hint {
+  position: absolute;
+  right: 4px;
+  bottom: -18px;
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+}
+
+/* === GRID DE EMOJIS === */
+.emoji-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 6px;
+}
+
+@media (max-width: 480px) {
+  .emoji-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+.emoji-btn {
+  aspect-ratio: 1;
+  background: var(--ion-card-background);
+  border: 2px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+}
+
+.emoji-btn:hover {
+  transform: translateY(-2px);
+  border-color: var(--ion-color-primary);
+}
+
+.emoji-btn.selected {
+  background: rgba(161, 0, 255, 0.1);
+  border-color: var(--ion-color-primary);
+  transform: scale(1.05);
+}
+
+/* === GRID DE COLORES === */
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 8px;
+}
+
+@media (max-width: 480px) {
+  .color-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.color-btn {
+  aspect-ratio: 1;
+  border: 3px solid transparent;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+}
+
+.color-btn:hover {
+  transform: scale(1.1);
+}
+
+.color-btn.selected {
+  border-color: var(--ion-text-color);
+  transform: scale(1.15);
+  box-shadow:
+    0 0 0 3px var(--ion-card-background),
+    0 0 0 5px var(--ion-text-color);
+}
+
+/* === BOTONES DE ACCIÓN === */
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+.btn {
+  flex: 1;
+  padding: 13px 20px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--ion-text-color);
+  border: 1.5px solid var(--border-subtle);
+}
+
+.btn-secondary:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+body.dark .btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.btn-primary {
+  background: var(--ion-color-primary);
+  color: #fff;
+  box-shadow: var(--shadow-purple);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--ion-color-primary-shade);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-purple-lg);
+}
+
+.btn-primary:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
+}

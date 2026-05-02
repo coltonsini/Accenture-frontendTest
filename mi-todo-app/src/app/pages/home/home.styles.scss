@@ -222,3 +222,37 @@ ion-fab-button:active {
     justify-content: flex-start;
   }
 }
+
+/* ============================================
+      HEADER ACTIONS (Dark mode toggle & Categories)
+============================================ */
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding-right: 8px;
+}
+
+.header-btn {
+  width: 38px;
+  height: 38px;
+  background: transparent;
+  border: none;
+  border-radius: 999px;
+  color: var(--ion-text-color);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  transition: background 0.2s ease;
+}
+
+.header-btn:hover {
+  background: rgba(161, 0, 255, 0.08);
+}
+
+body.dark .header-btn:hover {
+  background: rgba(184, 51, 255, 0.12);
+}

@@ -1,13 +1,5 @@
-import { Component, Output, EventEmitter, Input, ChangeDetectionStrategy } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { TaskCategory } from '../../models/task.model';
-
-interface FilterChip {
-  id: TaskCategory | 'all';
-  label: string;
-  icon: string;
-  color: string;
-}
+import { Component, Output, EventEmitter, Input, ChangeDetectionStrategy, inject, computed } from '@angular/core';import { CommonModule } from '@angular/common';
+import { CategoryService } from '../../services/category.service';
 
 @Component({
   selector: 'app-category-filter',
@@ -18,14 +10,25 @@ interface FilterChip {
   template: `
     <div class="filter-scroll">
       <div class="filter-track">
-        @for (chip of chips; track chip.id) {
+        <!-- Chip "Todas" siempre presente -->
+        <button
+          class="chip"
+          [class.active]="active === 'all'"
+          [style.--chip-color]="'#1f1f1f'"
+          (click)="filterChange.emit('all')">
+          <span class="chip-icon">✨</span>
+          <span class="chip-label">Todas</span>
+        </button>
+
+        <!-- Chips dinámicos según categorías -->
+        @for (cat of categoryService.categories(); track cat.id) {
           <button
             class="chip"
-            [class.active]="active === chip.id"
-            [style.--chip-color]="chip.color"
-            (click)="select(chip.id)">
-            <span class="emoji">{{ chip.icon }}</span>
-            <span class="label">{{ chip.label }}</span>
+            [class.active]="active === cat.id"
+            [style.--chip-color]="cat.color"
+            (click)="filterChange.emit(cat.id)">
+            <span class="chip-icon">{{ cat.emoji }}</span>
+            <span class="chip-label">{{ cat.name }}</span>
           </button>
         }
       </div>
@@ -33,18 +36,8 @@ interface FilterChip {
   `,
 })
 export class CategoryFilterComponent {
-  @Input() active: TaskCategory | 'all' = 'all';
-  @Output() filterChange = new EventEmitter<TaskCategory | 'all'>();
+  @Input() active: string = 'all';
+  @Output() filterChange = new EventEmitter<string>();
 
-  chips: FilterChip[] = [
-    { id: 'all',      label: 'Todas',    icon: '✨', color: '#1f1f1f' },
-    { id: 'trabajo',  label: 'Trabajo',  icon: '💼', color: '#a100ff' },
-    { id: 'personal', label: 'Personal', icon: '🏠', color: '#6f00ff' },
-    { id: 'estudio',  label: 'Estudio',  icon: '📚', color: '#008a3c' },
-    { id: 'otros',    label: 'Otros',    icon: '🌟', color: '#ff6d00' },
-  ];
-
-  select(id: TaskCategory | 'all') {
-    this.filterChange.emit(id);
-  }
+  categoryService = inject(CategoryService);
 }
